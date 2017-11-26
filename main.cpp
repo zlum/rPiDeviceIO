@@ -1,4 +1,5 @@
 #include "deviceio.h"
+#include "i2c.h"
 
 #include <unistd.h>
 #include <iomanip>
@@ -61,5 +62,14 @@ void readCycle(DeviceIO<unsigned char, unsigned char>* i2c)
 
 int main()
 {
+    cout << "Hello, I2C!" << endl;
+
+    DeviceIO<unsigned char, unsigned char>* i2c = new I2C(0x77);
+
+//    I2C* i2c = new I2C(0x68);
+//    I2C* i2c = new I2C(0x77);
+
+    readCycle(i2c);
+
     return 0;
 }

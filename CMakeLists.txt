@@ -14,8 +14,11 @@ if(NOT WIN32)
 endif(NOT WIN32)
 
 include_directories(hw_interface)
+include_directories(hw_interface/i2c)
 
 set(SourceGroup_IO
+    "hw_interface/i2c/i2c.cpp"
+    "hw_interface/i2c/i2c.h"
     "hw_interface/deviceio.h"
 )
 source_group("rPiDeviceIO\\IO" FILES ${SourceGroup_IO})
