@@ -30,7 +30,7 @@ int32_t I2C::setup()
     char *filename = (char*)"/dev/i2c-1";
     if((_file_i2c = open(filename, O_RDWR)) < 0)
     {
-        cerr << "Failed to open the i2c bus" << endl;
+        cerr << "Failed to open the I2C bus" << endl;
         cerr << "errno = " << errno << endl;
 
         return errno;
@@ -49,48 +49,28 @@ int32_t I2C::setup()
 
 bool I2C::read(const unsigned char& reg, unsigned char* buf, uint8_t len)
 {
-    uint8_t length = i2c_smbus_read_i2c_block_data(_file_i2c, reg, len, buf);
+    uint8_t res = i2c_smbus_read_i2c_block_data(_file_i2c, reg, len, buf);
 
-    if(length != len)
+    if(res != len)
     {
-        cerr << "Failed to read from the i2c bus" << endl;
+        cerr << "Failed to read from the I2C bus" << endl;
+        cerr << "I2C bus error code is " << res << endl;
     }
 
-    return length == len;
+    return res == len;
 }
 
 bool I2C::write(const unsigned char& reg, unsigned char* buf, uint8_t len)
 {
-    uint8_t length = i2c_smbus_write_i2c_block_data(_file_i2c, reg, len, buf);
-
-    if(length != len)
-    {
-        cerr << "Failed to write to the i2c bus" << endl;
-    }
-
-    return length == len;
-}
-
-int32_t I2C::read(const unsigned char& reg)
-{
-    int32_t res = i2c_smbus_read_byte_data(_file_i2c, reg);
+    int32_t res = i2c_smbus_write_i2c_block_data(_file_i2c, reg, len, buf);
 
     if(res < 0)
     {
-        cerr << "Failed to read from the i2c bus" << endl;
+        cerr << "Failed to write to the I2C bus" << endl;
+        cerr << "I2C bus error code is " << res << endl;
     }
 
-    return std::forward<int32_t>(res);
+    return res == 0;
 }
 
-int32_t I2C::write(const unsigned char& reg, const unsigned char& val)
-{
-    int32_t res = i2c_smbus_write_byte_data(_file_i2c, reg, val);
-
-    if(res < 0)
-    {
-        cerr << "Failed to write to the i2c bus" << endl;
-    }
-
-    return std::forward<int32_t>(res);
-}
+//TODO: I2C bus error handling

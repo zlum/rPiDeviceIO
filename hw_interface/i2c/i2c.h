@@ -11,11 +11,8 @@ public:
 
     ///DeviceIO
     //Max length is 32 bytes
-    virtual bool read(const unsigned char& reg, unsigned char* io_buf, uint8_t len) override final;
-    virtual bool write(const unsigned char& reg, unsigned char* io_buf, uint8_t len) override final;
-
-    virtual int32_t read(const unsigned char& reg) final;
-    virtual int32_t write(const unsigned char& reg, const unsigned char& val) final;
+    virtual bool read(const unsigned char& reg, unsigned char* buf, uint8_t len) override final;
+    virtual bool write(const unsigned char& reg, unsigned char* buf, uint8_t len) override final;
     //~DeviceIO
 
 private:

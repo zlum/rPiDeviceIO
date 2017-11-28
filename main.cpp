@@ -1,5 +1,5 @@
 #include "deviceio.h"
-#include "i2c.h"
+#include "hw_interface/i2c/i2c.h"
 
 #include <unistd.h>
 #include <iomanip>
@@ -15,7 +15,7 @@ using namespace std;
 //0x68
 //#define BUF_SIZE 127
 
-#define BUF_SIZE 32
+#define BUF_SIZE 2
 
 static unsigned char buffer[BUF_SIZE] = {0};
 static pthread_mutex_t print_mutex;
@@ -44,12 +44,14 @@ void readCycle(DeviceIO<unsigned char, unsigned char>* i2c)
 {
     while(1)
     {
-        i2c->read(0x80, buffer, BUF_SIZE);
+        i2c->read(0xF6, buffer, BUF_SIZE);
         printBuffer(buffer);
 
         try
         {
-            cout << hex << uint64_t(i2c->read<uint64_t>(0x80)) << endl;
+            i2c->write<uint8_t>(0xF4, 0x2E);
+            usleep(250000);
+            cout << hex << uint16_t(i2c->read<uint16_t>(0xF6)) << endl;
         }
         catch(std::runtime_error& e)
         {

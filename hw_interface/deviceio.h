@@ -18,7 +18,8 @@ public:
     virtual bool read(const Register& reg, Byte* buf, uint8_t len) = 0;
     virtual bool write(const Register& reg, Byte* buf, uint8_t len) = 0;
 
-    template<typename Int> Int read(const Register& reg);
+    template<typename Value> Value read(const Register& reg);
+    template<typename Size, typename Value> bool write(const Register& reg, const Value& val);
 
 private:
     unsigned char* _io_buf;
@@ -37,11 +38,11 @@ DeviceIO<Register, Byte>::~DeviceIO()
 }
 
 template<typename Register, typename Byte>
-template<typename Int>
-Int DeviceIO<Register, Byte>::read(const Register& reg)
+template<typename Value>
+Value DeviceIO<Register, Byte>::read(const Register& reg)
 {
-    Int value = 0;
-    uint8_t size = uint8_t(sizeof(Int));
+    Value value = 0;
+    uint8_t size = uint8_t(sizeof(Value));
 
     if(size > IO_READ_LEN_MAX)
         size = IO_READ_LEN_MAX;
@@ -50,9 +51,27 @@ Int DeviceIO<Register, Byte>::read(const Register& reg)
         throw std::runtime_error("Failed to read from the device");
 
     for(uint8_t i = 0; i < size; i++)
-        value |= (static_cast<Int>(_io_buf[i]) << 8 * (size - (i + 1)));
+        value |= (static_cast<Value>(_io_buf[i]) << 8 * (size - (i + 1)));
 
-    return std::forward<Int>(value);
+    return std::forward<Value>(value);
+}
+
+template<typename Register, typename Byte>
+template<typename Size, typename Value>
+bool DeviceIO<Register, Byte>::write(const Register& reg, const Value& val)
+{
+    uint8_t size = uint8_t(sizeof(Size));
+
+    if(size > IO_READ_LEN_MAX)
+        size = IO_READ_LEN_MAX;
+
+    for(uint8_t i = 0; i < size; i++)
+        _io_buf[size - (i + 1)] |= (val >> (8 * i)) & 0xFF;
+
+    if(!write(reg, _io_buf, size))
+        throw std::runtime_error("Failed to write to the device");
+
+    return true;
 }
 
 #endif // DEVICEIO_H
