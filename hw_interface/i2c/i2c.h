@@ -1,25 +1,29 @@
 #ifndef I2C_H
 #define I2C_H
 
-#include "deviceio.h"
+#include "hardware.hpp"
 
-class I2C: public DeviceIO<unsigned char, unsigned char>
+enum class I2C_Register: uint8_t;
+enum class I2C_Value: uint8_t;
+
+class I2C:
+        public Hardware<I2C_Register, uint8_t>
 {
 public:
-    explicit I2C(const unsigned char& addr);
+    explicit I2C(const I2C_Register& addr);
     virtual ~I2C();
 
-    ///DeviceIO
+    ///Hardware
     //Max length is 32 bytes
-    virtual bool read(const unsigned char& reg, unsigned char* buf, uint8_t len) override final;
-    virtual bool write(const unsigned char& reg, unsigned char* buf, uint8_t len) override final;
-    //~DeviceIO
+    virtual bool readBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len) override final;
+    virtual bool writeBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len) override final;
+    //~Hardware
 
 private:
     int32_t setup();
 
 private:
-    unsigned char _addr;
+    I2C_Register _addr;
     int _file_i2c = 0;
 };
 

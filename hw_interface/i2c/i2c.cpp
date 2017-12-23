@@ -11,7 +11,7 @@
 
 using namespace std;
 
-I2C::I2C(const unsigned char& addr):
+I2C::I2C(const I2C_Register& addr):
     _addr(addr)
 {
     if(setup())
@@ -47,9 +47,9 @@ int32_t I2C::setup()
     return 0;
 }
 
-bool I2C::read(const unsigned char& reg, unsigned char* buf, uint8_t len)
+bool I2C::readBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)
 {
-    uint8_t res = i2c_smbus_read_i2c_block_data(_file_i2c, reg, len, buf);
+    uint8_t res = i2c_smbus_read_i2c_block_data(_file_i2c, uint8_t(reg), len, buf);
 
     if(res != len)
     {
@@ -60,9 +60,9 @@ bool I2C::read(const unsigned char& reg, unsigned char* buf, uint8_t len)
     return res == len;
 }
 
-bool I2C::write(const unsigned char& reg, unsigned char* buf, uint8_t len)
+bool I2C::writeBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)
 {
-    int32_t res = i2c_smbus_write_i2c_block_data(_file_i2c, reg, len, buf);
+    int32_t res = i2c_smbus_write_i2c_block_data(_file_i2c, uint8_t(reg), len, buf);
 
     if(res < 0)
     {
