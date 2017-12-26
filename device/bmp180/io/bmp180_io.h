@@ -9,7 +9,7 @@ class BMP180_IO:
         public BMP180_Calc
 {
 public:
-    explicit BMP180_IO(const BMP180_Mode& mode = BMP180_Mode(0));
+    explicit BMP180_IO(const BMP180_Mode& mode = BMP180_Mode(1));
     virtual ~BMP180_IO();
 
     ///BMP180_Calc

@@ -9,7 +9,9 @@ public:
     static BMP180* create();
     virtual ~BMP180() = 0;
 
+    //Temperature in degrees Celsius
     virtual float getTemperature() = 0;
+    //Pressure level in Pa
     virtual int32_t getPressure() = 0;
 };
 

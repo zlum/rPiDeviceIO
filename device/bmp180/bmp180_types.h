@@ -1,4 +1,16 @@
+#ifndef BMP180_TYPES_H
+#define BMP180_TYPES_H
+
 #include <cstdint>
+
+/*-----------------------------------------------------------------------
+ADDRESSES
+-----------------------------------------------------------------------*/
+enum class I2C_Address: uint8_t
+{
+    SDC             = 0x68,
+    SDA             = 0x77
+};
 
 /*-----------------------------------------------------------------------
 CONST VALUES
@@ -16,8 +28,6 @@ REGISTERS
 -----------------------------------------------------------------------*/
 enum class I2C_Register: uint8_t
 {
-    SDC             = 0x68,
-    SDA             = 0x77,
     AC1             = 0xAA,  // R   Calibration data (16 bits)
     AC2             = 0xAC,  // R   Calibration data (16 bits)
     AC3             = 0xAE,  // R   Calibration data (16 bits)
@@ -66,3 +76,5 @@ struct BMP180_Calibration
     int16_t  mc;
     int16_t  md;
 };
+
+#endif // BMP180_TYPES_H

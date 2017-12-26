@@ -11,7 +11,7 @@
 
 using namespace std;
 
-I2C::I2C(const I2C_Register& addr):
+I2C::I2C(const I2C_Address& addr):
     _addr(addr)
 {
     if(setup())
@@ -49,15 +49,15 @@ int32_t I2C::setup()
 
 bool I2C::readBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)
 {
-    uint8_t res = i2c_smbus_read_i2c_block_data(_file_i2c, uint8_t(reg), len, buf);
+    int32_t res = i2c_smbus_read_i2c_block_data(_file_i2c, uint8_t(reg), len, buf);
 
-    if(res != len)
+    if(res != (int32_t)len)
     {
         cerr << "Failed to read from the I2C bus" << endl;
         cerr << "I2C bus error code is " << res << endl;
     }
 
-    return res == len;
+    return res == (int32_t)len;
 }
 
 bool I2C::writeBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)

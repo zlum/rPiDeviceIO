@@ -3,6 +3,7 @@
 
 #include "hardware.hpp"
 
+enum class I2C_Address: uint8_t;
 enum class I2C_Register: uint8_t;
 enum class I2C_Value: uint8_t;
 
@@ -10,7 +11,7 @@ class I2C:
         public Hardware<I2C_Register, uint8_t>
 {
 public:
-    explicit I2C(const I2C_Register& addr);
+    explicit I2C(const I2C_Address& addr);
     virtual ~I2C();
 
     ///Hardware
@@ -23,7 +24,7 @@ private:
     int32_t setup();
 
 private:
-    I2C_Register _addr;
+    I2C_Address _addr;
     int _file_i2c = 0;
 };
 

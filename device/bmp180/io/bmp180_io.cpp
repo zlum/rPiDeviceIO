@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 BMP180_IO::BMP180_IO(const BMP180_Mode& mode):
-    I2C(I2C_Register::SDA),
+    I2C(I2C_Address::SDA),
     BMP180_Calc()
 {
     if(!initialize(mode))
