@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 BMP180_IO::BMP180_IO(const BMP180_Mode& mode):
-    I2C(I2C_Address::SDA),
+    I2C(I2C_Address::DEVICE),
     BMP180_Calc()
 {
     if(!initialize(mode))
@@ -57,6 +57,19 @@ uint24_t BMP180_IO::getRawPressure()
 
 bool BMP180_IO::initialize(const BMP180_Mode& mode)
 {
+    if(!check()) return false;
+
+    /* Set the mode indicator */
+    this->mode = mode;
+
+    /* Coefficients need to be read once */
+    calibration = getCalibration();
+
+    return true;
+}
+
+bool BMP180_IO::check()
+{
     /* Make sure we have the right device */
     uint8_t id;
 
@@ -66,12 +79,6 @@ bool BMP180_IO::initialize(const BMP180_Mode& mode)
     {
         return false;
     }
-
-    /* Set the mode indicator */
-    this->mode = mode;
-
-    /* Coefficients need to be read once */
-    calibration = getCalibration();
 
     return true;
 }

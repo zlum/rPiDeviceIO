@@ -8,8 +8,7 @@ ADDRESSES
 -----------------------------------------------------------------------*/
 enum class I2C_Address: uint8_t
 {
-    SDC             = 0x68,
-    SDA             = 0x77
+    DEVICE          = 0x77
 };
 
 /*-----------------------------------------------------------------------
@@ -52,11 +51,11 @@ MODE SETTINGS
 -----------------------------------------------------------------------*/
 enum class BMP180_Mode: uint8_t
 {
-    ULTRALOWPOWER = 0,
-    STANDARD      = 1,
-    HIGHRES       = 2,
-    ULTRAHIGHRES  = 3,
-    ADVANCEDRES   = 4
+    ULTRALOWPOWER   = 0,
+    STANDARD        = 1,
+    HIGHRES         = 2,
+    ULTRAHIGHRES    = 3,
+    ADVANCEDRES     = 4
 };
 
 /*-----------------------------------------------------------------------

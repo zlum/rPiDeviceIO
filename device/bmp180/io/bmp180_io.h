@@ -19,6 +19,7 @@ public:
 
 private:
     bool initialize(const BMP180_Mode& mode);
+    bool check();
     BMP180_Calibration* getCalibration();
 };
 
