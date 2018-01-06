@@ -19,9 +19,9 @@ public:
     virtual bool writeBuf(const Register& reg, Byte* buf, uint8_t len) = 0;
 
     template<typename Type>
-    Type read(const Register& reg, bool bigEndian = false);
+    Type read(const Register& reg, bool bigEndian = true);
     template<typename Type, typename Value>
-    bool write(const Register& reg, const Value& val, bool bigEndian = false);
+    bool write(const Register& reg, const Value& val, bool bigEndian = true);
 
 private:
     Byte* _io_buf;
@@ -53,12 +53,12 @@ Type Hardware<Register, Byte>::read(const Register& reg, bool bigEndian)
 
     if(bigEndian)
     {
-        memcpy(&value, _io_buf, size);
+        for(uint8_t i = 0; i < size; i++)
+            value |= (static_cast<Type>(_io_buf[i]) << 8 * (size - (i + 1)));
     }
     else
     {
-        for(uint8_t i = 0; i < size; i++)
-            value |= (static_cast<Type>(_io_buf[i]) << 8 * (size - (i + 1)));
+        memcpy(&value, _io_buf, size);
     }
 
     return std::move(value);
@@ -74,12 +74,12 @@ bool Hardware<Register, Byte>::write(const Register& reg, const Value& val, bool
 
     if(bigEndian)
     {
-        memcpy(_io_buf, &val, size);
+        for(uint8_t i = 0; i < size; i++)
+            _io_buf[size - (i + 1)] |= (static_cast<Type>(val) >> (8 * i)) & 0xFF;
     }
     else
     {
-        for(uint8_t i = 0; i < size; i++)
-            _io_buf[size - (i + 1)] |= (static_cast<Type>(val) >> (8 * i)) & 0xFF;
+        memcpy(_io_buf, &val, size);
     }
 
     if(!writeBuf(reg, _io_buf, size))
