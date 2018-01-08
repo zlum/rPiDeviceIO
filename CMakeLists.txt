@@ -38,6 +38,28 @@ set(SourceGroup_BMP180
 )
 source_group("rPiDeviceIO\\BMP180" FILES ${SourceGroup_BMP180})
 
+set(SourceGroup_MPU9255
+    "device/mpu9255/mpu9255.cpp"
+    "device/mpu9255/mpu9255.h"
+    "device/mpu9255/mpu9255_types.h"
+    "device/mpu9255/calc/mpu9255_calc.cpp"
+    "device/mpu9255/calc/mpu9255_calc.h"
+    "device/mpu9255/io/accelerometer/mpu9255_accel.cpp"
+    "device/mpu9255/io/accelerometer/mpu9255_accel.h"
+    "device/mpu9255/io/accelerometer/mpu9255_accel_reg.h"
+    "device/mpu9255/io/gyroscope/mpu9255_gyro.cpp"
+    "device/mpu9255/io/gyroscope/mpu9255_gyro.h"
+    "device/mpu9255/io/gyroscope/mpu9255_gyro_reg.h"
+    "device/mpu9255/io/magnetometer/mpu9255_mag.cpp"
+    "device/mpu9255/io/magnetometer/mpu9255_mag.h"
+    "device/mpu9255/io/magnetometer/mpu9255_mag_reg.h"
+    "device/mpu9255/io/mpu9255_io.cpp"
+    "device/mpu9255/io/mpu9255_io.h"
+    "device/mpu9255/io/mpu9255_reg.h"
+    "device/mpu9255/io/mpu9255_raw.h"
+)
+source_group("rPiDeviceIO\\MPU9255" FILES ${SourceGroup_MPU9255})
+
 #Types
 set(SourceGroup_Types
     "types/int24.h"
@@ -67,9 +89,10 @@ source_group("rPiDeviceIO\\Test" FILES ${SourceGroup_Test})
 set(SOURCE
     ${SourceGroup_IO}
     ${SourceGroup_BMP180}
+    ${SourceGroup_MPU9255}
     ${SourceGroup_Types}
-    ${SourceGroup_Test}
     ${SourceGroup_Measure}
+    ${SourceGroup_Test}
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})

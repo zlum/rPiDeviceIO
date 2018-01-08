@@ -1,4 +1,5 @@
 #include "bmp180/bmp180.h"
+#include "mpu9255/mpu9255.h"
 
 //#include "hardware.hpp"
 //#include "i2c/i2c.h"
@@ -68,13 +69,36 @@ void readCycle(BMP180* bmp180)
     }
 }
 
+void readCycle(MPU9255* mpu9255)
+{
+    MPU9255_AccelData accel;
+    MPU9255_GyroData gyro;
+    MPU9255_MagData mag;
+
+    while(1)
+    {
+        accel = mpu9255->getAccel();
+        gyro = mpu9255->getGyro();
+        mag = mpu9255->getMag();
+
+        cout << "ACCEL: \t " << accel.x << " " << accel.y << " " << accel.z << endl;
+        cout << "GYRO: \t " << gyro.x << " " << gyro.y << " " << gyro.z << endl;
+        cout << "MAG: \t " << mag.x << " " << mag.y << " " << mag.z << endl;
+        cout << endl;
+
+        usleep(250000);
+    }
+}
+
 int main()
 {
     cout << "Hello, I2C!" << endl;
 
-    BMP180* bmp180 = BMP180::create();
+//    BMP180* bmp180 = BMP180::create();
+    MPU9255* mpu9255 = MPU9255::create();
 
-    readCycle(bmp180);
+//    readCycle(bmp180);
+    readCycle(mpu9255);
 
     return 0;
 }
