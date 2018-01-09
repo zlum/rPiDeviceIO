@@ -73,21 +73,9 @@ bool MPU9255_Gyro::setGyroOffset(MPU9255_GyroRawData* offset)
 
     // Divide by 4 to get 32.9 LSB per deg/s to conform to expected bias input format
     // Biases are additive, so change sign on calculated average gyro biases
-    uint8_t calRegister[6];
-    calRegister[0] = (-offset->x / 4  >> 8) & 0xFF;
-    calRegister[1] = (-offset->x / 4)       & 0xFF;
-    calRegister[2] = (-offset->y / 4  >> 8) & 0xFF;
-    calRegister[3] = (-offset->y / 4)       & 0xFF;
-    calRegister[4] = (-offset->z / 4  >> 8) & 0xFF;
-    calRegister[5] = (-offset->z / 4)       & 0xFF;
-
-    //Write to register
-    write<uint8_t>(I2C_Register::OFFSET_X_H, calRegister[0]);
-    write<uint8_t>(I2C_Register::OFFSET_X_L, calRegister[1]);
-    write<uint8_t>(I2C_Register::OFFSET_Y_H, calRegister[2]);
-    write<uint8_t>(I2C_Register::OFFSET_Y_L, calRegister[3]);
-    write<uint8_t>(I2C_Register::OFFSET_Z_H, calRegister[4]);
-    write<uint8_t>(I2C_Register::OFFSET_Z_L, calRegister[5]);
+    write<int16_t>(I2C_Register::OFFSET_X, -offset->x / 4);
+    write<int16_t>(I2C_Register::OFFSET_Y, -offset->y / 4);
+    write<int16_t>(I2C_Register::OFFSET_Z, -offset->z / 4);
 
     return true;
 }
