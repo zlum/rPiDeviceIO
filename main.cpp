@@ -1,13 +1,12 @@
 #include "bmp180/bmp180.h"
 #include "mpu9255/mpu9255.h"
+#include "measure.h"
 
 //#include "hardware.hpp"
 //#include "i2c/i2c.h"
 //#include "bmp180/io/bmp180_io.h"
 //#include "bmp180/bmp180_types.h"
 //#include "int24.h"
-
-#include "measure.h"
 
 #include <unistd.h>
 #include <iomanip>
@@ -94,11 +93,11 @@ int main()
 {
     cout << "Hello, I2C!" << endl;
 
-//    BMP180* bmp180 = BMP180::create();
-    MPU9255* mpu9255 = MPU9255::create();
+    BMP180* bmp180 = BMP180::create();
+//    MPU9255* mpu9255 = MPU9255::create();
 
-//    readCycle(bmp180);
-    readCycle(mpu9255);
+    readCycle(bmp180);
+//    readCycle(mpu9255);
 
     return 0;
 }

@@ -1,6 +1,6 @@
 #include "bmp180_calc.h"
 
-#include "bmp180/bmp180_types.h"
+#include "bmp180/io/bmp180_raw.h"
 #include "int24.h"
 
 #include <utility>

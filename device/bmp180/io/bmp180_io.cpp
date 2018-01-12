@@ -1,16 +1,24 @@
 #include "bmp180_io.h"
 
-#include "bmp180/bmp180_types.h"
+#include "bmp180/io/barometer/bmp180_bar.h"
+#include "bmp180/io/thermometer/bmp180_therm.h"
+
+#include "bmp180_raw.h"
+#include "bmp180_reg.h"
+
 #include "int24.h"
 
 #include <unistd.h>
 
 BMP180_IO::BMP180_IO(const BMP180_Mode& mode):
-    I2C(I2C_Address::DEVICE),
+    I2C(I2C_Address::BMP180),
     BMP180_Calc()
 {
     if(!initialize(mode))
         throw std::runtime_error("Failed to initialize BMP180");
+
+    barometer = new BMP180_Bar(mode);
+    thermometer = new BMP180_Therm();
 }
 
 BMP180_IO::~BMP180_IO()
@@ -19,40 +27,12 @@ BMP180_IO::~BMP180_IO()
 
 uint16_t BMP180_IO::getRawTemperature()
 {
-    write<uint8_t>(I2C_Register::CONTROL, I2C_Value::READTEMP);
-    usleep(5000);
-
-    return read<uint16_t>(I2C_Register::TEMPDATA);
+    return thermometer->getRawTemperature();
 }
 
 uint24_t BMP180_IO::getRawPressure()
 {
-    write<uint8_t>(I2C_Register::CONTROL,
-                   int(I2C_Value::READPRESSURE) + (int(mode) << 6));
-
-    switch(mode)
-    {
-    case BMP180_Mode::ULTRALOWPOWER:
-        usleep(5000);
-        break;
-    case BMP180_Mode::STANDARD:
-        usleep(8000);
-        break;
-    case BMP180_Mode::HIGHRES:
-        usleep(14000);
-        break;
-    case BMP180_Mode::ULTRAHIGHRES:
-        usleep(26000);
-        break;
-    case BMP180_Mode::ADVANCEDRES:
-        usleep(77000);
-        break;
-    default:
-        usleep(77000);
-        break;
-    }
-
-    return read<uint24_t>(I2C_Register::PRESSUREDATA) >> (8 - int(mode));
+    return barometer->getRawPressure();
 }
 
 bool BMP180_IO::initialize(const BMP180_Mode& mode)

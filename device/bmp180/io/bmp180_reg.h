@@ -8,7 +8,7 @@ ADDRESSES
 -----------------------------------------------------------------------*/
 enum class I2C_Address: uint8_t
 {
-    DEVICE          = 0x77
+    BMP180          = 0x77
 };
 
 /*-----------------------------------------------------------------------
@@ -16,10 +16,8 @@ CONST VALUES
 -----------------------------------------------------------------------*/
 enum class I2C_Value: uint8_t
 {
-    CHIPID          = 0x55,
-    SOFTRESET       = 0xB6,
-    READTEMP        = 0x2E,
-    READPRESSURE    = 0x34
+    CHIPID          = 0x55, //CHIPID
+    SOFTRESET       = 0xB6  //SOFTRESET
 };
 
 /*-----------------------------------------------------------------------
@@ -40,40 +38,7 @@ enum class I2C_Register: uint8_t
     MD              = 0xBE,  // R   Calibration data (16 bits)
     CHIPID          = 0xD0,
     VERSION         = 0xD1,
-    SOFTRESET       = 0xE0,
-    CONTROL         = 0xF4,
-    TEMPDATA        = 0xF6,
-    PRESSUREDATA    = 0xF6
-};
-
-/*-----------------------------------------------------------------------
-MODE SETTINGS
------------------------------------------------------------------------*/
-enum class BMP180_Mode: uint8_t
-{
-    ULTRALOWPOWER   = 0,
-    STANDARD        = 1,
-    HIGHRES         = 2,
-    ULTRAHIGHRES    = 3,
-    ADVANCEDRES     = 4
-};
-
-/*-----------------------------------------------------------------------
-CALIBRATION DATA
------------------------------------------------------------------------*/
-struct BMP180_Calibration
-{
-    int16_t  ac1;
-    int16_t  ac2;
-    int16_t  ac3;
-    uint16_t ac4;
-    uint16_t ac5;
-    uint16_t ac6;
-    int16_t  b1;
-    int16_t  b2;
-    int16_t  mb;
-    int16_t  mc;
-    int16_t  md;
+    SOFTRESET       = 0xE0
 };
 
 #endif // BMP180_TYPES_H

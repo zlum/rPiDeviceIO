@@ -3,8 +3,8 @@
 
 #include "bmp180/bmp180.h"
 
-class uint24_t;
 enum class BMP180_Mode: uint8_t;
+class uint24_t;
 struct BMP180_Calibration;
 
 class BMP180_Calc:

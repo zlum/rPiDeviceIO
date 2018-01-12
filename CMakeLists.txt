@@ -30,11 +30,18 @@ source_group("rPiDeviceIO\\IO" FILES ${SourceGroup_IO})
 set(SourceGroup_BMP180
     "device/bmp180/bmp180.cpp"
     "device/bmp180/bmp180.h"
-    "device/bmp180/bmp180_types.h"
     "device/bmp180/calc/bmp180_calc.cpp"
     "device/bmp180/calc/bmp180_calc.h"
     "device/bmp180/io/bmp180_io.cpp"
     "device/bmp180/io/bmp180_io.h"
+    "device/bmp180/io/barometer/bmp180_bar.cpp"
+    "device/bmp180/io/barometer/bmp180_bar.h"
+    "device/bmp180/io/barometer/bmp180_bar_reg.h"
+    "device/bmp180/io/thermometer/bmp180_therm.cpp"
+    "device/bmp180/io/thermometer/bmp180_therm.h"
+    "device/bmp180/io/thermometer/bmp180_therm_reg.h"
+    "device/bmp180/io/bmp180_raw.h"
+    "device/bmp180/io/bmp180_reg.h"
 )
 source_group("rPiDeviceIO\\BMP180" FILES ${SourceGroup_BMP180})
 
@@ -55,8 +62,8 @@ set(SourceGroup_MPU9255
     "device/mpu9255/io/magnetometer/mpu9255_mag_reg.h"
     "device/mpu9255/io/mpu9255_io.cpp"
     "device/mpu9255/io/mpu9255_io.h"
-    "device/mpu9255/io/mpu9255_reg.h"
     "device/mpu9255/io/mpu9255_raw.h"
+    "device/mpu9255/io/mpu9255_reg.h"
 )
 source_group("rPiDeviceIO\\MPU9255" FILES ${SourceGroup_MPU9255})
 
