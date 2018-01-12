@@ -4,7 +4,7 @@
 #include <cstdint>
 
 /*-----------------------------------------------------------------------
-ACCELERATION DATA TYPES
+ACCELEROMETER DATA TYPES
 -----------------------------------------------------------------------*/
 struct MPU9255_AccelData
 {
