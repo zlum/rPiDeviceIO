@@ -33,7 +33,13 @@ MPU9255_GyroRawData MPU9255_Gyro::getRawGyro()
 
 bool MPU9255_Gyro::initialize()
 {
-    write<uint8_t>(I2C_Register::CONFIG, I2C_Value::FS_250);
+    write<uint8_t>(I2C_Register::GYRO_CONFIG,
+                   uint8_t(I2C_Value_GYRO_CONFIG::FSR_250) +
+                   ((uint8_t(I2C_Value_CONFIG::LPF_3600) >> 3) & 3));
+
+    write<uint8_t>(I2C_Register::CONFIG,
+                   uint8_t(I2C_Value_CONFIG::LPF_3600) & 7);
+
     usleep(USLEEP_TIME);
 
     offset = accumGyroOffset();

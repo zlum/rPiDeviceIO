@@ -7,7 +7,6 @@
 
 #define USLEEP_TIME 200000
 #define AVERAGE 1000.0
-#define ZNORMAL 16384 //Gravity compensation value
 
 MPU9255_Accel::MPU9255_Accel():
     I2C(I2C_Address::MPU9255_ACCEL)
@@ -35,8 +34,8 @@ MPU9255_AccelRawData MPU9255_Accel::getRawAccel()
 bool MPU9255_Accel::initialize()
 {
     //Accelerometer to 1 kHz
-    write<uint8_t>(I2C_Register::CONFIG_2, I2C_Value::HZ_1130);
-    write<uint8_t>(I2C_Register::CONFIG_1, I2C_Value::FS_2);
+    write<uint8_t>(I2C_Register::CONFIG_2, I2C_Value_ACCEL_CONFIG_2::LPF_1130);
+    write<uint8_t>(I2C_Register::CONFIG_1, I2C_Value_ACCEL_CONFIG_1::FSR_2);
     usleep(USLEEP_TIME);
 
     offset = accumAccelOffset();

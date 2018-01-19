@@ -54,11 +54,11 @@ bool MPU9255_IO::initialize()
 {
     if(!check()) return false;
 
-    write<uint8_t>(I2C_Register::PWR_MGMT_1, I2C_Value::RESET_ALL);
+    write<uint8_t>(I2C_Register::PWR_MGMT_1, I2C_Value_PWR_MGMT_1::RESET_ALL);
     usleep(USLEEP_TIME);
 
-    write<uint8_t>(I2C_Register::PWR_MGMT_1, I2C_Value::RESET_CLOCK);
-    write<uint8_t>(I2C_Register::PWR_MGMT_2, I2C_Value::TURN_ON_ALL);
+    write<uint8_t>(I2C_Register::PWR_MGMT_1, I2C_Value_PWR_MGMT_1::RESET_CLOCK);
+    write<uint8_t>(I2C_Register::PWR_MGMT_2, I2C_Value_PWR_MGMT_2::TURN_ON_ALL);
     usleep(USLEEP_TIME);
 
     write<uint8_t>(I2C_Register::INT_ENABLE, I2C_Value::DISABLE);   // Disable all interrupts
@@ -67,7 +67,7 @@ bool MPU9255_IO::initialize()
     write<uint8_t>(I2C_Register::I2C_MST_CTRL, I2C_Value::DISABLE); // Disable I2C master
     write<uint8_t>(I2C_Register::USER_CTRL, I2C_Value::DISABLE);    // Disable FIFO and I2C master modes
 
-    write<uint8_t>(I2C_Register::INT_PIN_CFG, I2C_Value::BYPASS_ENABLE); //Enable I2C bypass for magnometer
+    write<uint8_t>(I2C_Register::INT_PIN_CFG, I2C_Value_INT_PIN_CFG::BYPASS_ENABLE); //Enable I2C bypass for magnometer
     usleep(USLEEP_TIME);
 
     return true;
@@ -80,7 +80,7 @@ bool MPU9255_IO::check()
 
     id = read<uint8_t>(I2C_Register::CHIPID);
 
-    if(id != uint8_t(I2C_Value::CHIPID))
+    if(id != uint8_t(I2C_Value_CHIPID::CHIPID))
     {
         return false;
     }

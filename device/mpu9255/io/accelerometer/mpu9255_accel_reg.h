@@ -12,13 +12,24 @@ enum class I2C_Address: uint8_t
 /*-----------------------------------------------------------------------
 CONST VALUES
 -----------------------------------------------------------------------*/
-enum class I2C_Value: uint8_t
+enum class I2C_Value_ACCEL_CONFIG_1: uint8_t
 {
-    FS_2                = 0x00, //ACCEL_CONFIG_1
-    FS_4                = 0x08, //ACCEL_CONFIG_1
-    FS_8                = 0x10, //ACCEL_CONFIG_1
-    FS_16               = 0x18, //ACCEL_CONFIG_1
-    HZ_1130             = 0x00, //ACCEL_CONFIG_2
+    FSR_2               = 0x00, // +/- 2g
+    FSR_4               = 0x08, // +/- 4g
+    FSR_8               = 0x10, // +/- 8g
+    FSR_16              = 0x18  // +/- 16g
+};
+
+enum class I2C_Value_ACCEL_CONFIG_2: uint8_t
+{
+    LPF_1130            = 0x08, // 1130Hz, 0.75mS delay
+    LPF_460             = 0x00, // 460Hz, 1.94mS delay
+    LPF_184             = 0x01, // 184Hz, 5.80mS delay
+    LPF_92              = 0x02, // 92Hz, 7.80mS delay
+    LPF_41              = 0x03, // 41Hz, 11.80mS delay
+    LPF_20              = 0x04, // 20Hz, 19.80mS delay
+    LPF_10              = 0x05, // 10Hz, 35.70mS delay
+    LPF_5               = 0x06  // 5Hz, 66.96mS delay
 };
 
 /*-----------------------------------------------------------------------

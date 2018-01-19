@@ -12,24 +12,36 @@ enum class I2C_Address: uint8_t
 /*-----------------------------------------------------------------------
 CONST VALUES
 -----------------------------------------------------------------------*/
-enum class I2C_Value: uint8_t
+enum class I2C_Value_ID: uint8_t
 {
-    ID                  = 0x48, //MAG_ID
-    RESET               = 0x01, //MAG_CONTROL_2
-    MODE_SINGLE         = 0x11, //MAG_CONTROL_1
-    MODE_CONT_1         = 0x12, //MAG_CONTROL_1
-    MODE_CONT_2         = 0x16  //MAG_CONTROL_1
+    ID                  = 0x48
+};
+
+enum class I2C_Value_MAG_CONTROL_1: uint8_t
+{
+    MODE_SINGLE         = 0x11,
+    MODE_CONT_1         = 0x12,
+    MODE_CONT_2         = 0x16
+};
+
+enum class I2C_Value_MAG_CONTROL_2: uint8_t
+{
+    RESET               = 0x01
 };
 
 /*-----------------------------------------------------------------------
 BIT FIELDS
 -----------------------------------------------------------------------*/
-enum class I2C_BitField: uint8_t
+enum class I2C_BitField_STATUS_1: uint8_t
 {
-    DATA_READY          = 0x01, //STATUS_1
-    DATA_OVERRUN        = 0x02, //STATUS_1
-    OVERFLOW            = 0x08, //STATUS_2
-    OUTPUT_MODE         = 0x10  //STATUS_2
+    DATA_READY          = 0x01,
+    DATA_OVERRUN        = 0x02
+};
+
+enum class I2C_BitField_STATUS_2: uint8_t
+{
+    OVERFLOW            = 0x08,
+    OUTPUT_MODE         = 0x10
 };
 
 /*-----------------------------------------------------------------------

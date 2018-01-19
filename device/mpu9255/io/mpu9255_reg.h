@@ -14,12 +14,28 @@ CONST VALUES
 -----------------------------------------------------------------------*/
 enum class I2C_Value: uint8_t
 {
-    CHIPID              = 0x73,
-    RESET_ALL           = 0x80, //PWR_MGMT_1
-    RESET_CLOCK         = 0x01, //PWR_MGMT_1
-    TURN_ON_ALL         = 0x00, //PWR_MGMT_2
-    DISABLE             = 0x00, //INTERRUPTS
-    BYPASS_ENABLE       = 0x02  //INT_PIN_CFG
+    DISABLE             = 0x00
+};
+
+enum class I2C_Value_CHIPID: uint8_t
+{
+    CHIPID              = 0x73
+};
+
+enum class I2C_Value_PWR_MGMT_1: uint8_t
+{
+    RESET_ALL           = 0x80,
+    RESET_CLOCK         = 0x01
+};
+
+enum class I2C_Value_PWR_MGMT_2: uint8_t
+{
+    TURN_ON_ALL         = 0x00
+};
+
+enum class I2C_Value_INT_PIN_CFG: uint8_t
+{
+    BYPASS_ENABLE       = 0x02
 };
 
 /*-----------------------------------------------------------------------
@@ -30,7 +46,6 @@ enum class I2C_Register: uint8_t
     TEMPDATA            = 0x41,
     CHIPID              = 0x75,
     SMPLRT_DIV          = 0x19, //Sample Rate Divider. Typical values:0x07(125Hz) 1KHz internal sample rate
-    CONFIG              = 0x1A, //Low Pass Filter.Typical values:0x06(5Hz)
     SIGNAL_PATH_RESET   = 0x68,
     USER_CTRL           = 0x6A, // Bit 7 enable DMP, bit 3 reset DMP
     PWR_MGMT_1          = 0x6B, // Device defaults to the SLEEP mode

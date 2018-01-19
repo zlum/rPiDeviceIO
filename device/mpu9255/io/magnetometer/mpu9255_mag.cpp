@@ -39,10 +39,10 @@ MPU9255_MagRawData MPU9255_Mag::getRawMag()
 
     uint8_t status = read<uint8_t>(I2C_Register::STATUS_2);
 
-    if(status & uint8_t(I2C_BitField::OVERFLOW))
+    if(status & uint8_t(I2C_BitField_STATUS_2::OVERFLOW))
         throw std::runtime_error("Failed to read MAG due to sensor overflow");
 
-    if(!(status & uint8_t(I2C_BitField::OUTPUT_MODE)))
+    if(!(status & uint8_t(I2C_BitField_STATUS_2::OUTPUT_MODE)))
         throw std::runtime_error("Failed to read MAG due to bad output settings");
 
     return std::move(data);
@@ -52,8 +52,9 @@ bool MPU9255_Mag::initialize()
 {
     if(!check()) return false;
 
-    write<uint8_t>(I2C_Register::CONTROL_2, I2C_Value::RESET);
-    write<uint8_t>(I2C_Register::CONTROL_1, I2C_Value::MODE_CONT_2);
+    //TODO: Mag init
+    write<uint8_t>(I2C_Register::CONTROL_2, I2C_Value_MAG_CONTROL_2::RESET);
+    write<uint8_t>(I2C_Register::CONTROL_1, I2C_Value_MAG_CONTROL_1::MODE_CONT_2);
     usleep(USLEEP_TIME);
 
     return true;
@@ -66,7 +67,7 @@ bool MPU9255_Mag::check()
 
     id = read<uint8_t>(I2C_Register::ID);
 
-    if(id != uint8_t(I2C_Value::ID))
+    if(id != uint8_t(I2C_Value_ID::ID))
     {
         return false;
     }

@@ -28,9 +28,9 @@ GYROSCOPE DATA TYPES
 -----------------------------------------------------------------------*/
 struct MPU9255_GyroData
 {
-    int16_t x = 0;
-    int16_t y = 0;
-    int16_t z = 0;
+    float x = 0;
+    float y = 0;
+    float z = 0;
 };
 
 #endif // MPU9255_TYPES_H

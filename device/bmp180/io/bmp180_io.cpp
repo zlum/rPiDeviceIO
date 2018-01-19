@@ -55,7 +55,7 @@ bool BMP180_IO::check()
 
     id = read<uint8_t>(I2C_Register::CHIPID);
 
-    if(id != uint8_t(I2C_Value::CHIPID))
+    if(id != uint8_t(I2C_Value_CHIPID::CHIPID))
     {
         return false;
     }

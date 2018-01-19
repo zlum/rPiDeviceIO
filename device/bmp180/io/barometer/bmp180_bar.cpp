@@ -20,7 +20,7 @@ BMP180_Bar::~BMP180_Bar()
 uint24_t BMP180_Bar::getRawPressure()
 {
     write<uint8_t>(I2C_Register::CONTROL,
-                   int(I2C_Value::READPRESSURE) + (int(mode) << 6));
+                   uint8_t(I2C_Value_CONTROL::READPRESSURE) + (uint8_t(mode) << 6));
 
     switch(mode)
     {

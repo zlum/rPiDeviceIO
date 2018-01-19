@@ -14,10 +14,14 @@ enum class I2C_Address: uint8_t
 /*-----------------------------------------------------------------------
 CONST VALUES
 -----------------------------------------------------------------------*/
-enum class I2C_Value: uint8_t
+enum class I2C_Value_CHIPID: uint8_t
 {
-    CHIPID          = 0x55, //CHIPID
-    SOFTRESET       = 0xB6  //SOFTRESET
+    CHIPID          = 0x55
+};
+
+enum class I2C_Value_SOFTRESET: uint8_t
+{
+    SOFTRESET       = 0xB6
 };
 
 /*-----------------------------------------------------------------------

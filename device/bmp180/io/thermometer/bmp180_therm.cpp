@@ -15,7 +15,7 @@ BMP180_Therm::~BMP180_Therm()
 
 uint16_t BMP180_Therm::getRawTemperature()
 {
-    write<uint8_t>(I2C_Register::CONTROL, I2C_Value::READTEMP);
+    write<uint8_t>(I2C_Register::CONTROL, I2C_Value_CONTROL::READTEMP);
     usleep(5000);
 
     return read<uint16_t>(I2C_Register::TEMPDATA);

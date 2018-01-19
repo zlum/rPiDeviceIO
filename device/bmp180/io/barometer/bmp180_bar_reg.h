@@ -14,9 +14,9 @@ enum class I2C_Address: uint8_t
 /*-----------------------------------------------------------------------
 CONST VALUES
 -----------------------------------------------------------------------*/
-enum class I2C_Value: uint8_t
+enum class I2C_Value_CONTROL: uint8_t
 {
-    READPRESSURE    = 0x34  //PRESSUREDATA
+    READPRESSURE    = 0x34
 };
 
 /*-----------------------------------------------------------------------
