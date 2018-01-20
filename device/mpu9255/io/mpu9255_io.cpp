@@ -21,6 +21,10 @@ MPU9255_IO::MPU9255_IO():
     accelerometer = new MPU9255_Accel;
     gyroscope = new MPU9255_Gyro;
     magnitomter = new MPU9255_Mag;
+
+    calibration = new MPU9255_Calibration;
+
+    calibration = magnitomter->getCalibration(calibration);
 }
 
 MPU9255_IO::~MPU9255_IO()

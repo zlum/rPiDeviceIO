@@ -3,6 +3,8 @@
 
 #include "mpu9255/mpu9255.h"
 
+struct MPU9255_Calibration;
+
 struct MPU9255_AccelRawData;
 struct MPU9255_GyroRawData;
 struct MPU9255_MagRawData;
@@ -27,9 +29,7 @@ protected:
     virtual int16_t getRawTemperature() = 0;
 
 protected:
-    MPU9255_AccelRawData* accelOffset = nullptr;
-    MPU9255_GyroRawData* gyroOffset = nullptr;
-    MPU9255_MagRawData* magOffset = nullptr;
+    MPU9255_Calibration* calibration = nullptr;
 };
 
 #endif // MPU9255_CALC_H

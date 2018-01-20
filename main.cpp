@@ -93,11 +93,11 @@ int main()
 {
     cout << "Hello, I2C!" << endl;
 
-    BMP180* bmp180 = BMP180::create();
-//    MPU9255* mpu9255 = MPU9255::create();
+//    BMP180* bmp180 = BMP180::create();
+    MPU9255* mpu9255 = MPU9255::create();
 
-    readCycle(bmp180);
-//    readCycle(mpu9255);
+//    readCycle(bmp180);
+    readCycle(mpu9255);
 
     return 0;
 }

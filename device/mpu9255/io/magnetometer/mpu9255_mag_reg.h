@@ -19,9 +19,14 @@ enum class I2C_Value_ID: uint8_t
 
 enum class I2C_Value_MAG_CONTROL_1: uint8_t
 {
-    MODE_SINGLE         = 0x11,
-    MODE_CONT_1         = 0x12,
-    MODE_CONT_2         = 0x16
+    PWR_DOWN            = 0x00,
+    SELF_TEST           = 0x08,
+    FUSE_ROM_ACCESS     = 0x0F,
+    //Measurement modes with 16-bit output
+    MEAS_SINGLE         = 0x11,
+    MEAS_CONT_1         = 0x12,
+    MEAS_EXT_TRIGGER    = 0x14,
+    MEAS_CONT_2         = 0x16
 };
 
 enum class I2C_Value_MAG_CONTROL_2: uint8_t
@@ -32,6 +37,11 @@ enum class I2C_Value_MAG_CONTROL_2: uint8_t
 /*-----------------------------------------------------------------------
 BIT FIELDS
 -----------------------------------------------------------------------*/
+enum class I2C_BitField_CONTROL_2: uint8_t
+{
+    RESET               = 0x01
+};
+
 enum class I2C_BitField_STATUS_1: uint8_t
 {
     DATA_READY          = 0x01,
@@ -52,9 +62,9 @@ enum class I2C_Register: uint8_t
     X                   = 0x03,
     Y                   = 0x05,
     Z                   = 0x07,
-    SENS_X              = 0x10,
-    SENS_Y              = 0x11,
-    SENS_Z              = 0x12,
+    ASA_X               = 0x10,
+    ASA_Y               = 0x11,
+    ASA_Z               = 0x12,
     CONTROL_1           = 0x0A,
     CONTROL_2           = 0x0B,
     SELF_TEST           = 0x0C,

@@ -13,7 +13,7 @@ MPU9255_Calc::MPU9255_Calc():
 
 MPU9255_Calc::~MPU9255_Calc()
 {
-    delete gyroOffset;
+    delete calibration;
 }
 
 MPU9255_AccelData MPU9255_Calc::getAccel()
@@ -75,9 +75,9 @@ MPU9255_MagData MPU9255_Calc::getMag()
     MPU9255_MagData data;
     MPU9255_MagRawData raw = getRawMag();
 
-    data.x = raw.x;
-    data.y = raw.y;
-    data.z = raw.z;
+    data.x = raw.x * calibration->magScaleX;
+    data.y = raw.y * calibration->magScaleY;
+    data.z = raw.z * calibration->magScaleZ;
 
     return std::move(data);
 }

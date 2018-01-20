@@ -59,6 +59,7 @@ set(SourceGroup_MPU9255
     "device/mpu9255/io/gyroscope/mpu9255_gyro_reg.h"
     "device/mpu9255/io/magnetometer/mpu9255_mag.cpp"
     "device/mpu9255/io/magnetometer/mpu9255_mag.h"
+    "device/mpu9255/io/magnetometer/mpu9255_mag_raw.h"
     "device/mpu9255/io/magnetometer/mpu9255_mag_reg.h"
     "device/mpu9255/io/mpu9255_io.cpp"
     "device/mpu9255/io/mpu9255_io.h"
