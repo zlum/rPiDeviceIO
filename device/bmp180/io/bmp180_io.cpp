@@ -19,6 +19,8 @@ BMP180_IO::BMP180_IO(const BMP180_Mode& mode):
 
     barometer = new BMP180_Bar(mode);
     thermometer = new BMP180_Therm();
+
+    calibration = getCalibration();
 }
 
 BMP180_IO::~BMP180_IO()
@@ -41,9 +43,6 @@ bool BMP180_IO::initialize(const BMP180_Mode& mode)
 
     /* Set the mode indicator */
     this->mode = mode;
-
-    /* Coefficients need to be read once */
-    calibration = getCalibration();
 
     return true;
 }
