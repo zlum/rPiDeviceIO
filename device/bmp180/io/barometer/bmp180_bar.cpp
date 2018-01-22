@@ -3,7 +3,7 @@
 #include "bmp180_bar_reg.h"
 #include "bmp180/io/bmp180_raw.h"
 
-#include "int24.h"
+#include "int24/int24.h"
 
 #include <unistd.h>
 

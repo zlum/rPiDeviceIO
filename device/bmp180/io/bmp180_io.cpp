@@ -6,7 +6,7 @@
 #include "bmp180_raw.h"
 #include "bmp180_reg.h"
 
-#include "int24.h"
+#include "int24/int24.h"
 
 #include <unistd.h>
 

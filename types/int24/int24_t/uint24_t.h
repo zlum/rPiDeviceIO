@@ -1,7 +1,7 @@
 #ifndef UINT24_T_H
 #define UINT24_T_H
 
-#include "utility/integer.hpp"
+#include "int24/utility/integer.hpp"
 
 #include <iostream>
 

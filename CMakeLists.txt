@@ -70,14 +70,14 @@ source_group("rPiDeviceIO\\MPU9255" FILES ${SourceGroup_MPU9255})
 
 #Types
 set(SourceGroup_Types
-    "types/int24.h"
-    "types/int24_t/int24_t.cpp"
-    "types/int24_t/int24_t.h"
-    "types/int24_t/uint24_t.cpp"
-    "types/int24_t/uint24_t.h"
-    "types/utility/conversion.hpp"
-    "types/utility/operators.hpp"
-    "types/utility/integer.hpp"
+    "types/int24/int24.h"
+    "types/int24/int24_t/int24_t.cpp"
+    "types/int24/int24_t/int24_t.h"
+    "types/int24/int24_t/uint24_t.cpp"
+    "types/int24/int24_t/uint24_t.h"
+    "types/int24/utility/conversion.hpp"
+    "types/int24/utility/operators.hpp"
+    "types/int24/utility/integer.hpp"
 )
 source_group("rPiDeviceIO\\Types" FILES ${SourceGroup_Types})
 
