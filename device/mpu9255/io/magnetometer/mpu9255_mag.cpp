@@ -51,7 +51,7 @@ MPU9255_MagRawData MPU9255_Mag::getRawMag()
     return std::move(data);
 }
 
-MPU9255_Calibration* MPU9255_Mag::getCalibration(MPU9255_Calibration* calibration)
+MPU9255_Calibration* MPU9255_Mag::getCalibration(MPU9255_Calibration* calibration) const
 {
     calibration->magScaleX = adjustment->x;
     calibration->magScaleY = adjustment->y;
@@ -123,9 +123,9 @@ MPU9255_MagAdjustment* MPU9255_Mag::getAdjustment()
     uint8_t asaZ = read<uint8_t>(I2C_Register::ASA_Z);
 
     // Convert asa to usable scale factor
-    adjust->x = ((double)asaX - 128.0) / 256.0 + 1.0;
-    adjust->y = ((double)asaY - 128.0) / 256.0 + 1.0;
-    adjust->z = ((double)asaZ - 128.0) / 256.0 + 1.0;
+    adjust->x = (double(asaX) - 128.0) / 256.0 + 1.0;
+    adjust->y = (double(asaY) - 128.0) / 256.0 + 1.0;
+    adjust->z = (double(asaZ) - 128.0) / 256.0 + 1.0;
 
     return adjust;
 }

@@ -62,9 +62,9 @@ MPU9255_AccelRawData* MPU9255_Accel::accumAccelOffset()
         usleep(1000);
     }
 
-    offset->x = tempGx / AVERAGE;
-    offset->y = tempGy / AVERAGE;
-    offset->z = tempGz / AVERAGE;
+    offset->x = int16_t(tempGx / AVERAGE);
+    offset->y = int16_t(tempGy / AVERAGE);
+    offset->z = int16_t(tempGz / AVERAGE);
 
     return offset;
 }

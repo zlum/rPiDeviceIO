@@ -60,20 +60,20 @@ int32_t BMP180_Calc::getPressure()
     x1 = (calibration->b2 * ((b6 * b6) >> 12)) >> 11;
     x2 = (calibration->ac2 * b6) >> 11;
     x3 = x1 + x2;
-    b3 = (((((int32_t)calibration->ac1) * 4 + x3) << int(mode)) + 2) >> 2;
+    b3 = ((((int32_t(calibration->ac1)) * 4 + x3) << int(mode)) + 2) >> 2;
     x1 = (calibration->ac3 * b6) >> 13;
     x2 = (calibration->b1 * ((b6 * b6) >> 12)) >> 16;
     x3 = ((x1 + x2) + 2) >> 2;
-    b4 = (calibration->ac4 * (uint32_t)(x3 + 32768)) >> 15;
-    b7 = ((uint32_t)(rawPressure - b3) * (50000 >> int(mode)));
+    b4 = (calibration->ac4 * uint32_t(x3 + 32768)) >> 15;
+    b7 = (uint32_t(rawPressure - b3) * (50000 >> int(mode)));
 
     if(b7 < 0x80000000)
     {
-        p = (b7 << 1) / b4;
+        p = int32_t((b7 << 1) / b4);
     }
     else
     {
-        p = (b7 / b4) << 1;
+        p = int32_t((b7 / b4) << 1);
     }
 
     x1 = (p >> 8) * (p >> 8);
@@ -86,8 +86,8 @@ int32_t BMP180_Calc::getPressure()
 
 int32_t BMP180_Calc::computeB5(int32_t rawTemperature)
 {
-    int32_t X1 = (rawTemperature - (int32_t)calibration->ac6) * ((int32_t)calibration->ac5) >> 15;
-    int32_t X2 = ((int32_t)calibration->mc << 11) / (X1 + (int32_t)calibration->md);
+    int32_t X1 = (rawTemperature - int32_t(calibration->ac6)) * (int32_t(calibration->ac5)) >> 15;
+    int32_t X2 = (int32_t(calibration->mc) << 11) / (X1 + int32_t(calibration->md));
 
     return X1 + X2;
 }

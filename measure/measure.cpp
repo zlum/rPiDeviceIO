@@ -11,7 +11,7 @@
     @param  pressure      Pressure in Pa
 */
 /**************************************************************************/
-float measure::Pa_mmHG(float pressure)
+double measure::Pa_mmHG(double pressure)
 {
     return pressure / 133.3223684;
 }
@@ -24,7 +24,7 @@ float measure::Pa_mmHG(float pressure)
     @param  pressure      Pressure in mmHG
 */
 /**************************************************************************/
-float measure::mmHG_Pa(float pressure)
+double measure::mmHG_Pa(double pressure)
 {
     return pressure * 133.3223684;
 }
@@ -38,7 +38,7 @@ float measure::mmHG_Pa(float pressure)
     @param  atmospheric   Atmospheric pressure in hPa
 */
 /**************************************************************************/
-float measure::pressureToAltitude(float seaLevel, float atmospheric)
+double measure::pressureToAltitude(double seaLevel, double atmospheric)
 {
     // Equation taken from BMP180 datasheet (page 16):
     // http://www.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf
@@ -59,7 +59,7 @@ float measure::pressureToAltitude(float seaLevel, float atmospheric)
     @param  atmospheric   Atmospheric pressure in hPa
 */
 /**************************************************************************/
-float measure::seaLevelForAltitude(float altitude, float atmospheric)
+double measure::seaLevelForAltitude(double altitude, double atmospheric)
 {
     // Equation taken from BMP180 datasheet (page 17):
     // http://www.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf

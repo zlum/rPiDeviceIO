@@ -51,13 +51,13 @@ bool I2C::readBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)
 {
     int32_t res = i2c_smbus_read_i2c_block_data(_file_i2c, uint8_t(reg), len, buf);
 
-    if(res != (int32_t)len)
+    if(res != int32_t(len))
     {
         cerr << "Failed to read from the I2C bus" << endl;
         cerr << "I2C bus error code is " << res << endl;
     }
 
-    return res == (int32_t)len;
+    return res == int32_t(len);
 }
 
 bool I2C::writeBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)

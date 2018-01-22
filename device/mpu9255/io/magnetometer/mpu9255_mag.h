@@ -15,7 +15,7 @@ public:
     virtual ~MPU9255_Mag();
 
     virtual MPU9255_MagRawData getRawMag();
-    virtual MPU9255_Calibration* getCalibration(MPU9255_Calibration* calibration);
+    virtual MPU9255_Calibration* getCalibration(MPU9255_Calibration* calibration) const;
 
 protected:
     MPU9255_MagAdjustment* adjustment = nullptr;
