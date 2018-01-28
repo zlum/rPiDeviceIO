@@ -1,5 +1,7 @@
-#include "bmp180/bmp180.h"
-#include "mpu9255/mpu9255.h"
+//#include "bmp180/bmp180.h"
+//#include "mpu9255/mpu9255.h"
+
+#include "device.h"
 #include "measure.h"
 
 //#include "hardware.hpp"
@@ -39,7 +41,7 @@ using namespace std;
 //    pthread_mutex_unlock(&print_mutex);
 //}
 
-void readCycle(BMP180* bmp180)
+void readCycle(BPS* bps)
 {
 //    BMP180_IO* i2c = dynamic_cast<BMP180_IO*>(bmp180);
 
@@ -61,24 +63,24 @@ void readCycle(BMP180* bmp180)
 
 //        usleep(250000);
 
-        cout << "Pressure: " << measure::Pa_mmHG(bmp180->getPressure()) << "\t";
-        cout << "Temperature: " << bmp180->getTemperature() << endl;
+        cout << "Pressure: " << measure::Pa_mmHG(bps->getPressure().value) << "\t";
+        cout << "Temperature: " << bps->getTemperature().value << endl;
 
         usleep(250000);
     }
 }
 
-void readCycle(MPU9255* mpu9255)
+void readCycle(IMU* imu)
 {
-    MPU9255_AccelData accel;
-    MPU9255_GyroData gyro;
-    MPU9255_MagData mag;
+    AccelData accel;
+    GyroData gyro;
+    MagData mag;
 
     while(1)
     {
-        accel = mpu9255->getAccel();
-        gyro = mpu9255->getGyro();
-        mag = mpu9255->getMag();
+        accel = imu->getAccel();
+        gyro = imu->getGyro();
+        mag = imu->getMag();
 
         cout << "ACCEL: \t " << accel.x << " " << accel.y << " " << accel.z << endl;
         cout << "GYRO: \t " << gyro.x << " " << gyro.y << " " << gyro.z << endl;
@@ -93,11 +95,11 @@ int main()
 {
     cout << "Hello, I2C!" << endl;
 
-//    BMP180* bmp180 = BMP180::create();
-//    readCycle(bmp180);
+    BPS* bps = Device::createBPS(Device::BPS::BMP180);
+    readCycle(bps);
 
-    MPU9255* mpu9255 = MPU9255::create();
-    readCycle(mpu9255);
+//    IMU* imu = Device::createIMU(Device::IMU::MPU9255);
+//    readCycle(imu);
 
     return 0;
 }

@@ -27,14 +27,14 @@ BMP180_IO::~BMP180_IO()
 {
 }
 
-uint16_t BMP180_IO::getRawTemperature()
-{
-    return thermometer->getRawTemperature();
-}
-
 uint24_t BMP180_IO::getRawPressure()
 {
     return barometer->getRawPressure();
+}
+
+uint16_t BMP180_IO::getRawTemperature()
+{
+    return thermometer->getRawTemperature();
 }
 
 bool BMP180_IO::initialize(const BMP180_Mode& mode)

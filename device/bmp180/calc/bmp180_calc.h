@@ -15,13 +15,13 @@ public:
     virtual ~BMP180_Calc();
 
     ///BMP180
-    virtual float getTemperature() override final;
-    virtual int32_t getPressure() override final;
+    virtual Pressure getPressure() override final;
+    virtual Temperature getTemperature() override final;
     //~BMP180
 
 protected:
-    virtual uint16_t getRawTemperature() = 0;
     virtual uint24_t getRawPressure() = 0;
+    virtual uint16_t getRawTemperature() = 0;
 
 protected:
     BMP180_Calibration* calibration = nullptr;

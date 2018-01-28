@@ -16,8 +16,8 @@ public:
     virtual ~BMP180_IO();
 
     ///BMP180_Calc
-    virtual uint16_t getRawTemperature() override final;
     virtual uint24_t getRawPressure() override final;
+    virtual uint16_t getRawTemperature() override final;
     //~BMP180_Calc
 
 private:

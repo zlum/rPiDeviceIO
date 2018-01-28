@@ -27,6 +27,22 @@ set(SourceGroup_IO
 source_group("rPiDeviceIO\\IO" FILES ${SourceGroup_IO})
 
 #Devices
+set(SourceGroup_Devices
+    "device/device.cpp"
+    "device/device.h"
+    "device/device_list.h"
+    "device/abstract/bps.cpp"
+    "device/abstract/bps.h"
+    "device/abstract/imu.cpp"
+    "device/abstract/imu.h"
+    "device/abstract/unit/accelerometer.h"
+    "device/abstract/unit/barometer.h"
+    "device/abstract/unit/gyroscope.h"
+    "device/abstract/unit/magnetometer.h"
+    "device/abstract/unit/thermometer.h"
+)
+source_group("rPiDeviceIO\\Devices" FILES ${SourceGroup_Devices})
+
 set(SourceGroup_BMP180
     "device/bmp180/bmp180.cpp"
     "device/bmp180/bmp180.h"
@@ -34,23 +50,26 @@ set(SourceGroup_BMP180
     "device/bmp180/calc/bmp180_calc.h"
     "device/bmp180/io/bmp180_io.cpp"
     "device/bmp180/io/bmp180_io.h"
+    "device/bmp180/io/bmp180_raw.h"
+    "device/bmp180/io/bmp180_reg.h"
     "device/bmp180/io/barometer/bmp180_bar.cpp"
     "device/bmp180/io/barometer/bmp180_bar.h"
     "device/bmp180/io/barometer/bmp180_bar_reg.h"
     "device/bmp180/io/thermometer/bmp180_therm.cpp"
     "device/bmp180/io/thermometer/bmp180_therm.h"
     "device/bmp180/io/thermometer/bmp180_therm_reg.h"
-    "device/bmp180/io/bmp180_raw.h"
-    "device/bmp180/io/bmp180_reg.h"
 )
 source_group("rPiDeviceIO\\BMP180" FILES ${SourceGroup_BMP180})
 
 set(SourceGroup_MPU9255
     "device/mpu9255/mpu9255.cpp"
     "device/mpu9255/mpu9255.h"
-    "device/mpu9255/mpu9255_types.h"
     "device/mpu9255/calc/mpu9255_calc.cpp"
     "device/mpu9255/calc/mpu9255_calc.h"
+    "device/mpu9255/io/mpu9255_io.cpp"
+    "device/mpu9255/io/mpu9255_io.h"
+    "device/mpu9255/io/mpu9255_raw.h"
+    "device/mpu9255/io/mpu9255_reg.h"
     "device/mpu9255/io/accelerometer/mpu9255_accel.cpp"
     "device/mpu9255/io/accelerometer/mpu9255_accel.h"
     "device/mpu9255/io/accelerometer/mpu9255_accel_reg.h"
@@ -61,15 +80,13 @@ set(SourceGroup_MPU9255
     "device/mpu9255/io/magnetometer/mpu9255_mag.h"
     "device/mpu9255/io/magnetometer/mpu9255_mag_raw.h"
     "device/mpu9255/io/magnetometer/mpu9255_mag_reg.h"
-    "device/mpu9255/io/mpu9255_io.cpp"
-    "device/mpu9255/io/mpu9255_io.h"
-    "device/mpu9255/io/mpu9255_raw.h"
-    "device/mpu9255/io/mpu9255_reg.h"
 )
 source_group("rPiDeviceIO\\MPU9255" FILES ${SourceGroup_MPU9255})
 
 #Types
 set(SourceGroup_Types
+    "types/bps_types.h"
+    "types/imu_types.h"
     "types/int24/int24.h"
     "types/int24/int24_t/int24_t.cpp"
     "types/int24/int24_t/int24_t.h"
@@ -96,6 +113,7 @@ source_group("rPiDeviceIO\\Test" FILES ${SourceGroup_Test})
 
 set(SOURCE
     ${SourceGroup_IO}
+    ${SourceGroup_Devices}
     ${SourceGroup_BMP180}
     ${SourceGroup_MPU9255}
     ${SourceGroup_Types}

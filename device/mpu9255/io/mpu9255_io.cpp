@@ -49,10 +49,10 @@ MPU9255_MagRawData MPU9255_IO::getRawMag()
     return magnitomter->getRawMag();
 }
 
-int16_t MPU9255_IO::getRawTemperature()
-{
-    return read<int16_t>(I2C_Register::TEMPDATA);
-}
+//int16_t MPU9255_IO::getRawTemperature()
+//{
+//    return read<int16_t>(I2C_Register::TEMPDATA);
+//}
 
 bool MPU9255_IO::initialize()
 {

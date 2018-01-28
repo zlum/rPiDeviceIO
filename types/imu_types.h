@@ -1,12 +1,10 @@
-#ifndef MPU9255_TYPES_H
-#define MPU9255_TYPES_H
-
-#include <cstdint>
+#ifndef IMU_TYPES_H
+#define IMU_TYPES_H
 
 /*-----------------------------------------------------------------------
 ACCELEROMETER DATA TYPES
 -----------------------------------------------------------------------*/
-struct MPU9255_AccelData
+struct AccelData
 {
     double x = 0;
     double y = 0;
@@ -16,7 +14,7 @@ struct MPU9255_AccelData
 /*-----------------------------------------------------------------------
 MAGNETOMETER DATA TYPES
 -----------------------------------------------------------------------*/
-struct MPU9255_MagData
+struct MagData
 {
     double x = 0;
     double y = 0;
@@ -26,11 +24,11 @@ struct MPU9255_MagData
 /*-----------------------------------------------------------------------
 GYROSCOPE DATA TYPES
 -----------------------------------------------------------------------*/
-struct MPU9255_GyroData
+struct GyroData
 {
     double x = 0;
     double y = 0;
     double z = 0;
 };
 
-#endif // MPU9255_TYPES_H
+#endif // IMU_TYPES_H

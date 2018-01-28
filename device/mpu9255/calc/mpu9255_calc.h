@@ -17,16 +17,16 @@ public:
     virtual ~MPU9255_Calc();
 
     ///MPU9255
-    virtual MPU9255_AccelData getAccel() override final;
-    virtual MPU9255_GyroData getGyro() override final;
-    virtual MPU9255_MagData getMag() override final;
+    virtual AccelData getAccel() override final;
+    virtual GyroData getGyro() override final;
+    virtual MagData getMag() override final;
     //~MPU9255
 
 protected:
     virtual MPU9255_AccelRawData getRawAccel() = 0;
     virtual MPU9255_GyroRawData getRawGyro() = 0;
     virtual MPU9255_MagRawData getRawMag() = 0;
-    virtual int16_t getRawTemperature() = 0;
+//    virtual int16_t getRawTemperature() = 0;
 
 protected:
     MPU9255_Calibration* calibration = nullptr;

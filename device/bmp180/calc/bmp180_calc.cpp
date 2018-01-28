@@ -17,34 +17,14 @@ BMP180_Calc::~BMP180_Calc()
 
 /**************************************************************************/
 /*!
-    @brief  Reads the temperatures in degrees Celsius
-*/
-/**************************************************************************/
-float BMP180_Calc::getTemperature()
-{
-    float temperature;
-    int32_t B5;
-    uint16_t rawTemperature;
-
-    rawTemperature = getRawTemperature();
-    B5 = computeB5(rawTemperature);
-
-    temperature = (B5 + 8) >> 4;
-    temperature /= 10;
-
-    return std::move(temperature);
-}
-
-/**************************************************************************/
-/*!
     @brief  Gets the compensated pressure level in Pa
 */
 /**************************************************************************/
-int32_t BMP180_Calc::getPressure()
+Pressure BMP180_Calc::getPressure()
 {
     uint16_t rawTemperature;
     uint24_t rawPressure;
-    int32_t pressure;
+    Pressure pressure;
     int32_t x1, x2, b5, b6, x3, b3, p;
     uint32_t b4, b7;
 
@@ -79,9 +59,29 @@ int32_t BMP180_Calc::getPressure()
     x1 = (p >> 8) * (p >> 8);
     x1 = (x1 * 3038) >> 16;
     x2 = (-7357 * p) >> 16;
-    pressure = p + ((x1 + x2 + 3791) >> 4);
+    pressure.value = p + ((x1 + x2 + 3791) >> 4);
 
     return std::move(pressure);
+}
+
+/**************************************************************************/
+/*!
+    @brief  Reads the temperatures in degrees Celsius
+*/
+/**************************************************************************/
+Temperature BMP180_Calc::getTemperature()
+{
+    Temperature temperature;
+    int32_t B5;
+    uint16_t rawTemperature;
+
+    rawTemperature = getRawTemperature();
+    B5 = computeB5(rawTemperature);
+
+    temperature.value = (B5 + 8) >> 4;
+    temperature.value /= 10;
+
+    return std::move(temperature);
 }
 
 int32_t BMP180_Calc::computeB5(int32_t rawTemperature)

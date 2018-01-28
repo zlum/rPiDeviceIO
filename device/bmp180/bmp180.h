@@ -1,18 +1,17 @@
 #ifndef BMP180_H
 #define BMP180_H
 
-#include <cstdint>
+#include "abstract/bps.h"
 
-class BMP180
+class BMP180:
+        public BPS
 {
 public:
     static BMP180* create();
     virtual ~BMP180() = 0;
 
-    //Temperature in degrees Celsius
-    virtual float getTemperature() = 0;
-    //Pressure level in Pa
-    virtual int32_t getPressure() = 0;
+    virtual Pressure getPressure() override = 0;
+    virtual Temperature getTemperature() override = 0;
 };
 
 inline BMP180::~BMP180() {}

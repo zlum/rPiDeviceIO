@@ -20,7 +20,7 @@ public:
     virtual MPU9255_AccelRawData getRawAccel() override final;
     virtual MPU9255_GyroRawData getRawGyro() override final;
     virtual MPU9255_MagRawData getRawMag() override final;
-    virtual int16_t getRawTemperature() override final;
+//    virtual int16_t getRawTemperature() override final;
     //~MPU9255_Calc
 
 private:
