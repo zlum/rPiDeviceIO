@@ -6,9 +6,9 @@ ACCELEROMETER DATA TYPES
 -----------------------------------------------------------------------*/
 struct AccelData
 {
-    double x = 0;
-    double y = 0;
-    double z = 0;
+    double x = 0.0;
+    double y = 0.0;
+    double z = 0.0;
 };
 
 /*-----------------------------------------------------------------------
@@ -16,9 +16,9 @@ MAGNETOMETER DATA TYPES
 -----------------------------------------------------------------------*/
 struct MagData
 {
-    double x = 0;
-    double y = 0;
-    double z = 0;
+    double x = 0.0;
+    double y = 0.0;
+    double z = 0.0;
 };
 
 /*-----------------------------------------------------------------------
@@ -26,9 +26,9 @@ GYROSCOPE DATA TYPES
 -----------------------------------------------------------------------*/
 struct GyroData
 {
-    double x = 0;
-    double y = 0;
-    double z = 0;
+    double x = 0.0;
+    double y = 0.0;
+    double z = 0.0;
 };
 
 #endif // IMU_TYPES_H
