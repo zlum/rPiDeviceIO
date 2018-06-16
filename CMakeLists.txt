@@ -100,6 +100,8 @@ source_group("rPiDeviceIO\\Types" FILES ${SourceGroup_Types})
 
 #Tests
 set(SourceGroup_Measure
+    "measure/meanfilter.cpp"
+    "measure/meanfilter.h"
     "measure/measure.cpp"
     "measure/measure.h"
 )

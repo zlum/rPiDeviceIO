@@ -1,6 +1,6 @@
 #include "meanfilter.h"
 
-MeanFilter::MeanFilter(uint16_t smNumber):
+MeanFilter::MeanFilter(unsigned smNumber):
     smNumber(smNumber)
 {
     if(this->smNumber == 0) // Filtration off
@@ -28,12 +28,20 @@ double MeanFilter::getFilteredValue(double value)
     return sum;
 }
 
-uint16_t MeanFilter::getSmNumber() const
+MeanFilter::~MeanFilter()
+{}
+
+unsigned MeanFilter::getSmNumber() const
+{
+    return samples.size();
+}
+
+unsigned MeanFilter::getMaxSmNumber() const
 {
     return smNumber;
 }
 
-void MeanFilter::setSmNumber(uint16_t smNumber)
+void MeanFilter::setMaxSmNumber(unsigned smNumber)
 {
     uint16_t diff;
 

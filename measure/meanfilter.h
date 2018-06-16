@@ -9,16 +9,17 @@
 class MeanFilter
 {
 public:
-    explicit MeanFilter(uint16_t smNumber = 10);
-    virtual ~MeanFilter() {}
+    explicit MeanFilter(unsigned smNumber = 10);
+    virtual ~MeanFilter();
 
     double getFilteredValue(double value);
 
-    uint16_t getSmNumber() const;
-    void setSmNumber(uint16_t smNumber);
+    unsigned getSmNumber() const;
+    unsigned getMaxSmNumber() const;
+    void setMaxSmNumber(unsigned smNumber);
 
 private:
-    uint16_t smNumber;
+    unsigned smNumber;
     std::deque<double> samples;
 };
 
