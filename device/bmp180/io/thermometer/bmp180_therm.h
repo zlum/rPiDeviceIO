@@ -1,7 +1,7 @@
 #ifndef BMP180_THERM_H
 #define BMP180_THERM_H
 
-#include "i2c/i2c.h"
+#include "i2c_prot/i2c.h"
 
 #include <cstdint>
 

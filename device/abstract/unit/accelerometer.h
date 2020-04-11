@@ -11,6 +11,6 @@ public:
 };
 
 template<typename AccelData>
-inline Accelerometer<AccelData>::~Accelerometer() {}
+inline Accelerometer<AccelData>::~Accelerometer() = default;
 
 #endif // ACCELEROMETER_H

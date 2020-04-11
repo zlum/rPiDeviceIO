@@ -9,11 +9,8 @@ class BMP180:
 public:
     static BMP180* create();
     virtual ~BMP180() = 0;
-
-    virtual Pressure getPressure() override = 0;
-    virtual Temperature getTemperature() override = 0;
 };
 
-inline BMP180::~BMP180() {}
+inline BMP180::~BMP180() = default;
 
 #endif // BMP180_H

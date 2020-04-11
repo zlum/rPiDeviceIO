@@ -11,6 +11,6 @@ public:
 };
 
 template<typename Pascal>
-inline Barometer<Pascal>::~Barometer() {}
+inline Barometer<Pascal>::~Barometer() = default;
 
 #endif // BAROMETER_H

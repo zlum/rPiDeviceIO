@@ -23,6 +23,6 @@ public:
     virtual MagData getMag() override = 0;
 };
 
-inline IMU::~IMU() {}
+inline IMU::~IMU() = default;
 
 #endif // IMU_H

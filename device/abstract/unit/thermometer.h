@@ -11,6 +11,6 @@ public:
 };
 
 template<typename Celsius>
-inline Thermometer<Celsius>::~Thermometer() {}
+inline Thermometer<Celsius>::~Thermometer() = default;
 
 #endif // THERMOMETER_H

@@ -1,7 +1,7 @@
 #ifndef MPU9255_GYRO_H
 #define MPU9255_GYRO_H
 
-#include "i2c/i2c.h"
+#include "i2c_prot/i2c.h"
 
 class MPU9255_GyroRawData;
 

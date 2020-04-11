@@ -14,10 +14,9 @@ public:
     explicit BMP180_Calc();
     virtual ~BMP180_Calc();
 
-    ///BMP180
+    // BPS
     virtual Pressure getPressure() override final;
     virtual Temperature getTemperature() override final;
-    //~BMP180
 
 protected:
     virtual uint24_t getRawPressure() = 0;

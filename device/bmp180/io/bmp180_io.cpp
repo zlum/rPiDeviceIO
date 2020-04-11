@@ -15,7 +15,9 @@ BMP180_IO::BMP180_IO(const BMP180_Mode& mode):
     BMP180_Calc()
 {
     if(!initialize(mode))
+    {
         throw std::runtime_error("Failed to initialize BMP180");
+    }
 
     barometer = new BMP180_Bar(mode);
     thermometer = new BMP180_Therm();
@@ -25,6 +27,8 @@ BMP180_IO::BMP180_IO(const BMP180_Mode& mode):
 
 BMP180_IO::~BMP180_IO()
 {
+    delete barometer;
+    delete thermometer;
 }
 
 uint24_t BMP180_IO::getRawPressure()

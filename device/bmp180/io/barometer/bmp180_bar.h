@@ -1,7 +1,7 @@
 #ifndef BMP180_BAR_H
 #define BMP180_BAR_H
 
-#include "i2c/i2c.h"
+#include "i2c_prot/i2c.h"
 
 enum class BMP180_Mode: uint8_t;
 class uint24_t;

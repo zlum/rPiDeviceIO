@@ -6,8 +6,8 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif(NOT CMAKE_BUILD_TYPE)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++14 -lstdc++ -lm -Wall -Wextra -Wpedantic")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -lstdc++ -lm -Wall -Wextra -Wpedantic")
 
 if(NOT WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
@@ -18,15 +18,17 @@ include_directories(device)
 include_directories(measure)
 include_directories(types)
 
-#Interfaces
+# Interfaces
 set(SourceGroup_IO
-    "hw_interface/i2c/i2c.cpp"
-    "hw_interface/i2c/i2c.h"
+    "hw_interface/i2c_prot/i2c.cpp"
+    "hw_interface/i2c_prot/i2c.h"
+    "hw_interface/modbus_prot/modbus.cpp"
+    "hw_interface/modbus_prot/modbus.h"
     "hw_interface/hardware.hpp"
 )
 source_group("rPiDeviceIO\\IO" FILES ${SourceGroup_IO})
 
-#Devices
+# Devices
 set(SourceGroup_Devices
     "device/device.cpp"
     "device/device.h"
@@ -40,6 +42,7 @@ set(SourceGroup_Devices
     "device/abstract/unit/gyroscope.h"
     "device/abstract/unit/magnetometer.h"
     "device/abstract/unit/thermometer.h"
+    "device/abstract/unit/timer.h"
 )
 source_group("rPiDeviceIO\\Devices" FILES ${SourceGroup_Devices})
 
@@ -83,10 +86,29 @@ set(SourceGroup_MPU9255
 )
 source_group("rPiDeviceIO\\MPU9255" FILES ${SourceGroup_MPU9255})
 
-#Types
+set(SourceGroup_OWEN_SV01
+    device/owen_sv01/owen_sv01.cpp
+    device/owen_sv01/owen_sv01.h
+    device/owen_sv01/io/owen_sv01_io.cpp
+    device/owen_sv01/io/owen_sv01_io.h
+    device/owen_sv01/io/owen_sv01_reg.h
+)
+source_group("rPiDeviceIO\\OWEN_SV01" FILES ${SourceGroup_OWEN_SV01})
+
+set(SourceGroup_OWEN_TRM202
+    device/owen_trm202/owen_trm202.cpp
+    device/owen_trm202/owen_trm202.h
+    device/owen_trm202/io/owen_trm202_io.cpp
+    device/owen_trm202/io/owen_trm202_io.h
+    device/owen_trm202/io/owen_trm202_reg.h
+)
+source_group("rPiDeviceIO\\OWEN_TRM202" FILES ${SourceGroup_OWEN_TRM202})
+
+# Types
 set(SourceGroup_Types
     "types/bps_types.h"
     "types/imu_types.h"
+    "types/unit/timer_types.h"
     "types/int24/int24.h"
     "types/int24/int24_t/int24_t.cpp"
     "types/int24/int24_t/int24_t.h"
@@ -98,7 +120,7 @@ set(SourceGroup_Types
 )
 source_group("rPiDeviceIO\\Types" FILES ${SourceGroup_Types})
 
-#Tests
+# Tests
 set(SourceGroup_Measure
     "measure/meanfilter.cpp"
     "measure/meanfilter.h"
@@ -107,7 +129,7 @@ set(SourceGroup_Measure
 )
 source_group("rPiDeviceIO\\Measure" FILES ${SourceGroup_Measure})
 
-#Tests
+# Utility
 set(SourceGroup_Test
     "main.cpp"
 )
@@ -118,9 +140,12 @@ set(SOURCE
     ${SourceGroup_Devices}
     ${SourceGroup_BMP180}
     ${SourceGroup_MPU9255}
+    ${SourceGroup_OWEN_SV01}
+    ${SourceGroup_OWEN_TRM202}
     ${SourceGroup_Types}
     ${SourceGroup_Measure}
     ${SourceGroup_Test}
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
+target_link_libraries(${PROJECT_NAME} modbus)
