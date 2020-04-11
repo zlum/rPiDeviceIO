@@ -4,6 +4,9 @@
 #include "device.h"
 #include "measure.h"
 
+#include "owen_sv01/owen_sv01.h"
+#include "owen_trm202/owen_trm202.h"
+
 //#include "hardware.hpp"
 //#include "i2c/i2c.h"
 //#include "bmp180/io/bmp180_io.h"
@@ -76,7 +79,7 @@ void readCycle(IMU* imu)
     GyroData gyro;
     MagData mag;
 
-    while(1)
+    while(true)
     {
         accel = imu->getAccel();
         gyro = imu->getGyro();
@@ -93,13 +96,23 @@ void readCycle(IMU* imu)
 
 int main()
 {
-    cout << "Hello, I2C!" << endl;
+    cout << "Hello, Raspberry!" << endl;
 
-    BPS* bps = Device::createBPS(Device::BPS::BMP180);
-    readCycle(bps);
+//    BPS* bps = Device::createBPS(Device::BPS::BMP180);
+//    readCycle(bps);
 
 //    IMU* imu = Device::createIMU(Device::IMU::MPU9255);
 //    readCycle(imu);
+
+    OWEN_SV01* owen_sv01 = OWEN_SV01::create();
+    OWEN_TRM202* owen_trm202_1 = OWEN_TRM202::create(2);
+    OWEN_TRM202* owen_trm202_2 = OWEN_TRM202::create(3);
+
+    cout << owen_sv01->getTime().value << endl;
+    cout << owen_trm202_1->getData().channel1 << endl;
+    cout << owen_trm202_1->getData().channel2 << endl;
+    cout << owen_trm202_2->getData().channel1 << endl;
+    cout << owen_trm202_2->getData().channel2 << endl;
 
     return 0;
 }

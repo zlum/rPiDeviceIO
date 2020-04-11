@@ -1,7 +1,7 @@
 #ifndef MPU9255_IO_H
 #define MPU9255_IO_H
 
-#include "i2c/i2c.h"
+#include "i2c_prot/i2c.h"
 #include "mpu9255/calc/mpu9255_calc.h"
 
 class MPU9255_Accel;

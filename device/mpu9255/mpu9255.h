@@ -15,6 +15,6 @@ public:
     virtual MagData getMag() override = 0;
 };
 
-inline MPU9255::~MPU9255() {}
+inline MPU9255::~MPU9255() = default;
 
 #endif // MPU9255_H

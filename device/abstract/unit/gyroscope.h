@@ -11,6 +11,6 @@ public:
 };
 
 template<typename GyroData>
-inline Gyroscope<GyroData>::~Gyroscope() {}
+inline Gyroscope<GyroData>::~Gyroscope() = default;
 
 #endif // GYROSCOPE_H

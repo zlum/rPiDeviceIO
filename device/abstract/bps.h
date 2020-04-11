@@ -16,12 +16,12 @@ public:
     static BPS* create(Device::BPS name);
     virtual ~BPS() = 0;
 
-    //Pressure level in Pa
+    // Pressure level in Pa
     virtual Pressure getPressure() override = 0;
-    //Temperature in degrees Celsius
+    // Temperature in degrees Celsius
     virtual Temperature getTemperature() override = 0;
 };
 
-inline BPS::~BPS() {}
+inline BPS::~BPS() = default;
 
 #endif // BPS_H

@@ -1,6 +1,6 @@
 #include "i2c.h"
 
-#include <errno.h>
+#include <cerrno>
 #include <fcntl.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
@@ -12,22 +12,21 @@
 using namespace std;
 
 I2C::I2C(const I2C_Address& addr):
-    _addr(addr)
+    _addr(addr),
+    _file_i2c(0)
 {
-    if(setup())
+    // TODO: Move setup() call from constructor
+    if(setup() != 0)
     {
         throw runtime_error("Can`t setup I2C!");
     }
 }
 
-I2C::~I2C()
-{
-}
-
 int32_t I2C::setup()
 {
     //----- OPEN THE I2C BUS -----
-    char *filename = (char*)"/dev/i2c-1";
+    char* filename = (char*)"/dev/i2c-1";
+
     if((_file_i2c = open(filename, O_RDWR)) < 0)
     {
         cerr << "Failed to open the I2C bus" << endl;
@@ -51,13 +50,13 @@ bool I2C::readBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)
 {
     int32_t res = i2c_smbus_read_i2c_block_data(_file_i2c, uint8_t(reg), len, buf);
 
-    if(res != int32_t(len))
+    if(res != len)
     {
         cerr << "Failed to read from the I2C bus" << endl;
         cerr << "I2C bus error code is " << res << endl;
     }
 
-    return res == int32_t(len);
+    return res == len;
 }
 
 bool I2C::writeBuf(const I2C_Register& reg, uint8_t* buf, uint8_t len)

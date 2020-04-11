@@ -14,7 +14,7 @@ public:
     explicit Hardware();
     virtual ~Hardware();
 
-    //Max len is 32 bytes
+    // Max len is 32 bytes
     virtual bool readBuf(const Register& reg, Byte* buf, uint8_t len) = 0;
     virtual bool writeBuf(const Register& reg, Byte* buf, uint8_t len) = 0;
 

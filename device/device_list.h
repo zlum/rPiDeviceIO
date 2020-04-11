@@ -12,6 +12,11 @@ namespace Device
     {
         MPU9255
     };
-}
+
+    enum class Timer
+    {
+        OWEN_SV01
+    };
+} // namespace Device
 
 #endif // DEVICE_LIST_H

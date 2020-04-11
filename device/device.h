@@ -10,6 +10,6 @@ namespace Device
     // TODO: pass config
     ::BPS* createBPS(BPS);
     ::IMU* createIMU(IMU);
-}
+} // namespace Device
 
 #endif // DEVICE_H

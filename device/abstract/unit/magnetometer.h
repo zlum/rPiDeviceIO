@@ -11,6 +11,6 @@ public:
 };
 
 template<typename MagData>
-inline Magnetometer<MagData>::~Magnetometer() {}
+inline Magnetometer<MagData>::~Magnetometer() = default;
 
 #endif // MAGNETOMETER_H
